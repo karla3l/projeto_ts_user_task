@@ -18,4 +18,7 @@ export class CreateUserDto {
   createAt: Date;
 
   updateAt: Date;
+
+  //precisa passar um objeto
+  //taskId:Task;
 }

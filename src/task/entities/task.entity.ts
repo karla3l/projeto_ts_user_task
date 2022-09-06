@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('tbl_task')
 export class Task {
@@ -8,4 +15,7 @@ export class Task {
   name: string;
   @Column()
   status: string;
+  //@OneToOne(() => User, (user) => user.task)
+  @OneToMany(() => User, (user) => user.task)
+  users: User[];
 }

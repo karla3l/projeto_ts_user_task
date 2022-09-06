@@ -1,8 +1,12 @@
 import * as bcrypt from 'bcrypt';
+import { Task } from 'src/task/entities/task.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,6 +30,12 @@ export class User {
   createAt: Date;
   @UpdateDateColumn()
   updateAt: Date;
+
+  // @OneToOne(() => Task, (task) => task.user)
+  // @JoinColumn()
+  // task: Task;
+  @ManyToOne(() => Task) //muitos usuarios participam de uma tarefa
+  task: Task;
 
   async checkPassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

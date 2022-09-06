@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Task = void 0;
+const user_entity_1 = require("../../user/entities/user.entity");
 const typeorm_1 = require("typeorm");
 let Task = class Task {
 };
@@ -25,6 +26,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Task.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.task),
+    __metadata("design:type", Array)
+], Task.prototype, "users", void 0);
 Task = __decorate([
     (0, typeorm_1.Entity)('tbl_task')
 ], Task);
